@@ -8,6 +8,7 @@
 
 import WatchKit
 import Foundation
+import AVFoundation
 
 final class InterfaceController: WKInterfaceController {
 
@@ -19,15 +20,17 @@ final class InterfaceController: WKInterfaceController {
         }
     }
 
-    private var player: WKAudioFilePlayer!
+    private var engine: AVAudioEngine!
+    private var player: AVAudioPlayerNode!
+    private var audioFile: AVAudioFile!
 
     // MARK: Helpers
 
     @IBAction private func didTapPauseButton() {
-        if player.rate == 0.0 {
-            player.play()
-        } else {
+        if player.isPlaying {
             player.pause()
+        } else {
+            player.play()
         }
 
         var title: String
@@ -43,11 +46,37 @@ final class InterfaceController: WKInterfaceController {
         super.awake(withContext: context)
 
         buttonTitle = Titles.random
-        
-        let url = Bundle.main.url(forResource: "Larry Owens - Interlude", withExtension: "mp3")!
-        let asset = WKAudioFileAsset(url: url)
-        player = WKAudioFilePlayer(playerItem: WKAudioFilePlayerItem(asset: asset))
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            engine = AVAudioEngine()
+
+            player = AVAudioPlayerNode()
+            engine.attach(player)
+
+            let stereoFormat = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
+            engine.connect(player, to: engine.mainMixerNode, format: stereoFormat)
+
+            let url = Bundle.main.url(forResource: "Larry Owens - Interlude", withExtension: "mp3")!
+            audioFile = try AVAudioFile(forReading: url)
+            
+            if !engine.isRunning {
+                try engine.start()
+            }
+        } catch {
+            preconditionFailure("RUINED")
+        }
+
+        player.scheduleFile(audioFile, at: nil, completionHandler: nil)
         player.play()
+    }
+
+    override func willActivate() {
+        super.willActivate()
+
+        try! AVAudioSession.sharedInstance().setActive(true)
     }
 
 }

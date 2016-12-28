@@ -14,7 +14,9 @@ final class ComplicationController: NSObject, CLKComplicationDataSource {
 
     private var randomTitleLines: (first: String, second: String) {
         let lines = Titles.random.components(separatedBy: "\n")
-        return (first: lines.first ?? "", second: lines.last ?? "")
+        let first = 1 <= lines.count ? lines[0] : ""
+        let second = 2 <= lines.count ? lines[1] : ""
+        return (first: first, second: second)
     }
 
     private var modularLargeTemplate: CLKComplicationTemplate {
