@@ -14,17 +14,25 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SoothingMusic_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label width="1" height="130" alignment="left" text="[Soothing Music]" textAlignment="center" id="vss-6u-YxM">
-                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                        </label>
-                        <sceneKitScene width="10" height="10" alignment="left" scene="Player.scn" id="BSJ-nB-LFg"/>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="qht-Rs-bbW">
+                            <items>
+                                <label width="1" height="1" heightAdjustment="-55" alignment="left" text="[Soothing Music]" textAlignment="center" id="vss-6u-YxM">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                                <button width="1" height="54" alignment="left" title="GG" id="igi-uA-Ije">
+                                    <connections>
+                                        <action selector="didTapPauseButton" destination="AgC-eL-Hgc" id="Kjp-Qs-vo0"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
                     <connections>
-                        <outlet property="sceneInterface" destination="BSJ-nB-LFg" id="J96-AD-bfx"/>
+                        <outlet property="pauseButton" destination="igi-uA-Ije" id="oRQ-cN-JeB"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="334"/>
         </scene>
     </scenes>
 </document>

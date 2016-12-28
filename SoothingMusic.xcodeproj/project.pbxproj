@@ -21,7 +21,6 @@
 		0AA2873F1E1415E600868CA7 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2873E1E1415E600868CA7 /* ExtensionDelegate.swift */; };
 		0AA287431E1415E600868CA7 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287421E1415E600868CA7 /* ComplicationController.swift */; };
 		0AA287451E1415E600868CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287441E1415E600868CA7 /* Assets.xcassets */; };
-		0AA287581E142ABC00868CA7 /* Player.scn in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287541E1425D700868CA7 /* Player.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 		0AA287421E1415E600868CA7 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		0AA287441E1415E600868CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AA287461E1415E600868CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AA287541E1425D700868CA7 /* Player.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = Player.scn; path = "../SoothingMusic WatchKit App/Player.scn"; sourceTree = "<group>"; };
 		0AA287561E14280A00868CA7 /* Larry Owens - Interlude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Larry Owens - Interlude.mp3"; path = "../SoothingMusic WatchKit App/Larry Owens - Interlude.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				0AA287561E14280A00868CA7 /* Larry Owens - Interlude.mp3 */,
-				0AA287541E1425D700868CA7 /* Player.scn */,
 				0AA2873C1E1415E600868CA7 /* InterfaceController.swift */,
 				0AA2873E1E1415E600868CA7 /* ExtensionDelegate.swift */,
 				0AA287421E1415E600868CA7 /* ComplicationController.swift */,
@@ -302,7 +299,6 @@
 			files = (
 				0A194FCF1E142B4C00876AFF /* Larry Owens - Interlude.mp3 in Resources */,
 				0AA287451E1415E600868CA7 /* Assets.xcassets in Resources */,
-				0AA287581E142ABC00868CA7 /* Player.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

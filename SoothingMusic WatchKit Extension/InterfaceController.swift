@@ -8,73 +8,69 @@
 
 import WatchKit
 import Foundation
-import SceneKit
-
-// AVFoundation is not available in the watchOS simulator.
-#if !((arch(i386) || arch(x86_64)) && os(watchOS))
-    import AVFoundation
-#endif
 
 final class InterfaceController: WKInterfaceController {
-    
-    @IBOutlet var sceneInterface: WKInterfaceSCNScene!
 
-    var player: SCNAudioPlayer!
+    @IBOutlet private var pauseButton: WKInterfaceButton!
 
-    private func setUp() {
-        guard let source = SCNAudioSource(named: "Larry Owens - Interlude.mp3"),
-            let scene = sceneInterface.scene,
-            let playerNode = scene.rootNode.childNode(withName: "player", recursively: true) else
-        {
-            preconditionFailure("RUINED")
+    private var buttonTitle = "" {
+        didSet {
+            pauseButton.setTitle(buttonTitle)
         }
-
-        source.loops = true
-        source.shouldStream = true
-        source.volume = 0.05
-
-        player = SCNAudioPlayer(source: source)
-        playerNode.addAudioPlayer(player)
-
-        #if !((arch(i386) || arch(x86_64)) && os(watchOS))
-            _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        #endif
     }
 
+    private var player: WKAudioFilePlayer!
+
+    // MARK: Helpers
+
+    var randomButtonTitle: String {
+        switch arc4random_uniform(8) {
+        case 0:
+            return "Black gesso"
+        case 1:
+            return "GG"
+        case 2:
+            return "Why doesn't Bob\nread chat?"
+        case 3:
+            return "Everybody\nneeds a friend"
+        case 4:
+            return "Just tap"
+        case 5:
+            return "This is\nyour world"
+        case 6:
+            return "You don't want\ntoo much green"
+        case 7:
+            return "Anybody can do it"
+        default:
+            return "RUINED"
+        }
+    }
+
+    @IBAction private func didTapPauseButton() {
+        if player.rate == 0.0 {
+            player.play()
+        } else {
+            player.pause()
+        }
+
+        var title: String
+        repeat {
+            title = randomButtonTitle
+        } while title == buttonTitle
+        buttonTitle = title
+    }
+    
     // MARK: WKInterfaceController
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+
+        buttonTitle = randomButtonTitle
         
-        setUp()
-    }
-
-    override func didAppear() {
-        super.didAppear()
-
-        sceneInterface.scene?.isPaused = false
-        
-        #if !((arch(i386) || arch(x86_64)) && os(watchOS))
-            _ = try? AVAudioSession.sharedInstance().setActive(true)
-        #endif
-    }
-
-    override func willDisappear() {
-        super.willDisappear()
-
-        sceneInterface.scene?.isPaused = true
-        
-        #if !((arch(i386) || arch(x86_64)) && os(watchOS))
-            _ = try? AVAudioSession.sharedInstance().setActive(false)
-        #endif
-    }
-
-    override func willActivate() {
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        super.didDeactivate()
+        let url = Bundle.main.url(forResource: "Larry Owens - Interlude", withExtension: "mp3")!
+        let asset = WKAudioFileAsset(url: url)
+        player = WKAudioFilePlayer(playerItem: WKAudioFilePlayerItem(asset: asset))
+        player.play()
     }
 
 }
