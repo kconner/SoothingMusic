@@ -7,13 +7,43 @@
 //
 
 import WatchKit
+import AVFoundation
 
 final class ExtensionDelegate: NSObject, WKExtensionDelegate {
+
+    private var engine: AVAudioEngine!
+    private(set) var player: AVAudioPlayerNode!
 
     // MARK: WKExtensionDelegate
 
     func applicationDidFinishLaunching() {
-        // No-op
+        let audioFile: AVAudioFile
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            engine = AVAudioEngine()
+
+            player = AVAudioPlayerNode()
+            engine.attach(player)
+
+            let stereoFormat = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
+            engine.connect(player, to: engine.mainMixerNode, format: stereoFormat)
+
+            let url = Bundle.main.url(forResource: "Larry Owens - Interlude", withExtension: "mp3")!
+            audioFile = try AVAudioFile(forReading: url)
+            
+            if !engine.isRunning {
+                try engine.start()
+            }
+        } catch {
+            preconditionFailure("RUINED")
+        }
+
+        player.volume = 0.05
+        player.scheduleFile(audioFile, at: nil, completionHandler: nil)
+        player.play()
     }
 
     func applicationDidBecomeActive() {
