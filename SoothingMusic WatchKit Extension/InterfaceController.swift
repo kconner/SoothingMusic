@@ -23,29 +23,6 @@ final class InterfaceController: WKInterfaceController {
 
     // MARK: Helpers
 
-    var randomButtonTitle: String {
-        switch arc4random_uniform(8) {
-        case 0:
-            return "Black gesso"
-        case 1:
-            return "GG"
-        case 2:
-            return "Why doesn't Bob\nread chat?"
-        case 3:
-            return "Everybody\nneeds a friend"
-        case 4:
-            return "Just tap"
-        case 5:
-            return "This is\nyour world"
-        case 6:
-            return "You don't want\ntoo much green"
-        case 7:
-            return "Anybody can do it"
-        default:
-            return "RUINED"
-        }
-    }
-
     @IBAction private func didTapPauseButton() {
         if player.rate == 0.0 {
             player.play()
@@ -55,7 +32,7 @@ final class InterfaceController: WKInterfaceController {
 
         var title: String
         repeat {
-            title = randomButtonTitle
+            title = Titles.random
         } while title == buttonTitle
         buttonTitle = title
     }
@@ -65,7 +42,7 @@ final class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
-        buttonTitle = randomButtonTitle
+        buttonTitle = Titles.random
         
         let url = Bundle.main.url(forResource: "Larry Owens - Interlude", withExtension: "mp3")!
         let asset = WKAudioFileAsset(url: url)
