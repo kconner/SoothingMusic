@@ -39,4 +39,16 @@ final class InterfaceController: WKInterfaceController {
         setUp()
     }
 
+    override func willActivate() {
+        super.willActivate()
+
+        sceneInterface.scene?.isPaused = false
+    }
+
+    override func didDeactivate() {
+        super.didDeactivate()
+
+        sceneInterface.scene?.isPaused = true
+    }
+
 }
