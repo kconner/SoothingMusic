@@ -42,8 +42,28 @@ final class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        // No text
-        handler(nil)
+        var template: CLKComplicationTemplate?
+
+        switch complication.family {
+        case .circularSmall:
+            break
+        case .modularLarge:
+            let modularLarge = CLKComplicationTemplateModularLargeStandardBody()
+            modularLarge.headerTextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "Joy of Painting")
+            modularLarge.body1TextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "[Soothing Music]")
+            modularLarge.body2TextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "")
+            template = modularLarge
+        case .modularSmall:
+            break
+        case .utilitarianLarge:
+            break
+        case .utilitarianSmall, .utilitarianSmallFlat:
+            break
+        case .extraLarge:
+            break
+        }
+
+        handler(template)
     }
     
 }
