@@ -10,6 +10,11 @@ import WatchKit
 import Foundation
 import SceneKit
 
+// AVFoundation is not available in the watchOS simulator.
+#if !((arch(i386) || arch(x86_64)) && os(watchOS))
+    import AVFoundation
+#endif
+
 final class InterfaceController: WKInterfaceController {
     
     @IBOutlet var sceneInterface: WKInterfaceSCNScene!
@@ -26,9 +31,14 @@ final class InterfaceController: WKInterfaceController {
 
         source.loops = true
         source.shouldStream = true
+        source.volume = 0.05
 
         player = SCNAudioPlayer(source: source)
         playerNode.addAudioPlayer(player)
+
+        #if !((arch(i386) || arch(x86_64)) && os(watchOS))
+            _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        #endif
     }
 
     // MARK: WKInterfaceController
@@ -39,16 +49,32 @@ final class InterfaceController: WKInterfaceController {
         setUp()
     }
 
-    override func willActivate() {
-        super.willActivate()
+    override func didAppear() {
+        super.didAppear()
 
         sceneInterface.scene?.isPaused = false
+        
+        #if !((arch(i386) || arch(x86_64)) && os(watchOS))
+            _ = try? AVAudioSession.sharedInstance().setActive(true)
+        #endif
+    }
+
+    override func willDisappear() {
+        super.willDisappear()
+
+        sceneInterface.scene?.isPaused = true
+        
+        #if !((arch(i386) || arch(x86_64)) && os(watchOS))
+            _ = try? AVAudioSession.sharedInstance().setActive(false)
+        #endif
+    }
+
+    override func willActivate() {
+        super.willActivate()
     }
 
     override func didDeactivate() {
         super.didDeactivate()
-
-        sceneInterface.scene?.isPaused = true
     }
 
 }
