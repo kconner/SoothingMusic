@@ -17,11 +17,7 @@
                         <label width="1" height="130" alignment="left" text="[Soothing Music]" textAlignment="center" id="vss-6u-YxM">
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
-                        <sceneKitScene width="10" height="10" alignment="left" scene="Player.scn" id="BSJ-nB-LFg"/>
                     </items>
-                    <connections>
-                        <outlet property="sceneInterface" destination="BSJ-nB-LFg" id="J96-AD-bfx"/>
-                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>

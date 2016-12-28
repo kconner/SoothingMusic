@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A194FCF1E142B4C00876AFF /* Larry Owens - Interlude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287561E14280A00868CA7 /* Larry Owens - Interlude.mp3 */; };
+		0A2A2BAF1E143F25005AB8F1 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2873C1E1415E600868CA7 /* InterfaceController.swift */; };
 		0AA287181E1415E600868CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287171E1415E600868CA7 /* AppDelegate.swift */; };
 		0AA2871A1E1415E600868CA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287191E1415E600868CA7 /* ViewController.swift */; };
 		0AA2871D1E1415E600868CA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2871B1E1415E600868CA7 /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		0AA2872D1E1415E600868CA7 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2872B1E1415E600868CA7 /* Interface.storyboard */; };
 		0AA2872F1E1415E600868CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2872E1E1415E600868CA7 /* Assets.xcassets */; };
 		0AA287361E1415E600868CA7 /* SoothingMusic WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0AA287351E1415E600868CA7 /* SoothingMusic WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0AA2873D1E1415E600868CA7 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2873C1E1415E600868CA7 /* InterfaceController.swift */; };
 		0AA2873F1E1415E600868CA7 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2873E1E1415E600868CA7 /* ExtensionDelegate.swift */; };
 		0AA287431E1415E600868CA7 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287421E1415E600868CA7 /* ComplicationController.swift */; };
 		0AA287451E1415E600868CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287441E1415E600868CA7 /* Assets.xcassets */; };
@@ -252,6 +252,7 @@
 					0AA287341E1415E600868CA7 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = VAK384QBBN;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -322,9 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A2A2BAF1E143F25005AB8F1 /* InterfaceController.swift in Sources */,
 				0AA287431E1415E600868CA7 /* ComplicationController.swift in Sources */,
 				0AA2873F1E1415E600868CA7 /* ExtensionDelegate.swift in Sources */,
-				0AA2873D1E1415E600868CA7 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = VAK384QBBN;
 				INFOPLIST_FILE = "SoothingMusic WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -473,6 +475,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
@@ -483,6 +486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = VAK384QBBN;
 				INFOPLIST_FILE = "SoothingMusic WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
