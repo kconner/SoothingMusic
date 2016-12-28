@@ -23,13 +23,10 @@ final class ComplicationController: NSObject, CLKComplicationDataSource {
             break
         case .modularLarge:
             let modularLarge = CLKComplicationTemplateModularLargeTallBody()
-            modularLarge.headerTextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "[Soothing Music]")
+            modularLarge.headerTextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "Joy of Painting")
             modularLarge.bodyTextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "RUINED")
             template = modularLarge
         case .modularSmall:
-//            let modularSmall = CLKComplicationTemplateModularSmallSimpleImage()
-//            modularSmall.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "modularSmallIcon")!)
-//            template = modularSmall
             break
         case .utilitarianLarge:
             break

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A194FCF1E142B4C00876AFF /* Larry Owens - Interlude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287561E14280A00868CA7 /* Larry Owens - Interlude.mp3 */; };
 		0AA287181E1415E600868CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287171E1415E600868CA7 /* AppDelegate.swift */; };
 		0AA2871A1E1415E600868CA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287191E1415E600868CA7 /* ViewController.swift */; };
 		0AA2871D1E1415E600868CA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2871B1E1415E600868CA7 /* Main.storyboard */; };
@@ -18,9 +19,9 @@
 		0AA287361E1415E600868CA7 /* SoothingMusic WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0AA287351E1415E600868CA7 /* SoothingMusic WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0AA2873D1E1415E600868CA7 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2873C1E1415E600868CA7 /* InterfaceController.swift */; };
 		0AA2873F1E1415E600868CA7 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2873E1E1415E600868CA7 /* ExtensionDelegate.swift */; };
-		0AA287411E1415E600868CA7 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287401E1415E600868CA7 /* NotificationController.swift */; };
 		0AA287431E1415E600868CA7 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA287421E1415E600868CA7 /* ComplicationController.swift */; };
 		0AA287451E1415E600868CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287441E1415E600868CA7 /* Assets.xcassets */; };
+		0AA287581E142ABC00868CA7 /* Player.scn in Resources */ = {isa = PBXBuildFile; fileRef = 0AA287541E1425D700868CA7 /* Player.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,10 +82,11 @@
 		0AA2873B1E1415E600868CA7 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		0AA2873C1E1415E600868CA7 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		0AA2873E1E1415E600868CA7 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		0AA287401E1415E600868CA7 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		0AA287421E1415E600868CA7 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		0AA287441E1415E600868CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AA287461E1415E600868CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AA287541E1425D700868CA7 /* Player.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = Player.scn; path = "../SoothingMusic WatchKit App/Player.scn"; sourceTree = "<group>"; };
+		0AA287561E14280A00868CA7 /* Larry Owens - Interlude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Larry Owens - Interlude.mp3"; path = "../SoothingMusic WatchKit App/Larry Owens - Interlude.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,9 +153,10 @@
 		0AA287391E1415E600868CA7 /* SoothingMusic WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0AA287561E14280A00868CA7 /* Larry Owens - Interlude.mp3 */,
+				0AA287541E1425D700868CA7 /* Player.scn */,
 				0AA2873C1E1415E600868CA7 /* InterfaceController.swift */,
 				0AA2873E1E1415E600868CA7 /* ExtensionDelegate.swift */,
-				0AA287401E1415E600868CA7 /* NotificationController.swift */,
 				0AA287421E1415E600868CA7 /* ComplicationController.swift */,
 				0AA287441E1415E600868CA7 /* Assets.xcassets */,
 				0AA287461E1415E600868CA7 /* Info.plist */,
@@ -297,7 +300,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A194FCF1E142B4C00876AFF /* Larry Owens - Interlude.mp3 in Resources */,
 				0AA287451E1415E600868CA7 /* Assets.xcassets in Resources */,
+				0AA287581E142ABC00868CA7 /* Player.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +322,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AA287411E1415E600868CA7 /* NotificationController.swift in Sources */,
 				0AA287431E1415E600868CA7 /* ComplicationController.swift in Sources */,
 				0AA2873F1E1415E600868CA7 /* ExtensionDelegate.swift in Sources */,
 				0AA2873D1E1415E600868CA7 /* InterfaceController.swift in Sources */,
@@ -573,6 +577,7 @@
 				0AA2874B1E1415E700868CA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0AA2874D1E1415E700868CA7 /* Build configuration list for PBXNativeTarget "SoothingMusic WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -581,6 +586,7 @@
 				0AA2874F1E1415E700868CA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0AA287511E1415E700868CA7 /* Build configuration list for PBXNativeTarget "SoothingMusic" */ = {
 			isa = XCConfigurationList;
@@ -589,6 +595,7 @@
 				0AA287531E1415E700868CA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,24 +8,35 @@
 
 import WatchKit
 import Foundation
+import SceneKit
 
+final class InterfaceController: WKInterfaceController {
+    
+    @IBOutlet var sceneInterface: WKInterfaceSCNScene!
 
-class InterfaceController: WKInterfaceController {
+    var player: SCNAudioPlayer!
+
+    private func setUp() {
+        guard let source = SCNAudioSource(named: "Larry Owens - Interlude.mp3"),
+            let scene = sceneInterface.scene,
+            let playerNode = scene.rootNode.childNode(withName: "player", recursively: true) else
+        {
+            preconditionFailure("RUINED")
+        }
+
+        source.loops = true
+        source.shouldStream = true
+
+        player = SCNAudioPlayer(source: source)
+        playerNode.addAudioPlayer(player)
+    }
+
+    // MARK: WKInterfaceController
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // Configure interface objects here.
-    }
-    
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-    }
-    
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
+        setUp()
     }
 
 }
