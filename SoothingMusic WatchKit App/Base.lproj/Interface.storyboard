@@ -16,9 +16,14 @@
                     <items>
                         <group width="1" height="1" alignment="left" layout="vertical" id="qht-Rs-bbW">
                             <items>
-                                <label width="1" height="1" heightAdjustment="-55" alignment="left" text="[Soothing Music]" textAlignment="center" id="vss-6u-YxM">
+                                <label width="1" height="1" heightAdjustment="-98" alignment="left" text="[Soothing Music]" textAlignment="center" id="vss-6u-YxM">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
+                                <slider alignment="left" continuous="YES" value="0.5" steps="8" id="lyL-0h-pfx">
+                                    <connections>
+                                        <action selector="volumeSliderValueChanged:" destination="AgC-eL-Hgc" id="LUo-FT-Zgd"/>
+                                    </connections>
+                                </slider>
                                 <button width="1" height="54" alignment="left" title="GG" id="igi-uA-Ije">
                                     <connections>
                                         <action selector="didTapPauseButton" destination="AgC-eL-Hgc" id="Kjp-Qs-vo0"/>
@@ -29,6 +34,7 @@
                     </items>
                     <connections>
                         <outlet property="pauseButton" destination="igi-uA-Ije" id="oRQ-cN-JeB"/>
+                        <outlet property="volumeSlider" destination="lyL-0h-pfx" id="sUD-1m-8V0"/>
                     </connections>
                 </controller>
             </objects>

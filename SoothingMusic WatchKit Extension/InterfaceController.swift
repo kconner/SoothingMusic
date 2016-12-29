@@ -12,6 +12,7 @@ import AVFoundation
 
 final class InterfaceController: WKInterfaceController {
 
+    @IBOutlet private var volumeSlider: WKInterfaceSlider!
     @IBOutlet private var pauseButton: WKInterfaceButton!
 
     private var extensionDelegate: ExtensionDelegate {
@@ -26,11 +27,20 @@ final class InterfaceController: WKInterfaceController {
 
     // MARK: Helpers
 
+    @IBAction func volumeSliderValueChanged(_ value: Float) {
+        UserDefaults.standard.set(value, forKey: "volume")
+        extensionDelegate.updateVolume()
+    }
+    
     @IBAction private func didTapPauseButton() {
-        if extensionDelegate.player.isPlaying {
-            extensionDelegate.player.pause()
-        } else {
-            extensionDelegate.player.play()
+        if let player = extensionDelegate.player {
+            if player.isPlaying {
+                player.pause()
+                volumeSlider.setEnabled(false)
+            } else {
+                player.play()
+                volumeSlider.setEnabled(true)
+            }
         }
 
         var title: String
@@ -45,6 +55,7 @@ final class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
+        volumeSlider.setValue(UserDefaults.standard.float(forKey: "volume"))
         buttonTitle = Titles.random
     }
 

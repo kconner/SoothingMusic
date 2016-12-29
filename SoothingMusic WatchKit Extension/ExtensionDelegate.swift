@@ -11,10 +11,14 @@ import AVFoundation
 
 final class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
-    private var engine: AVAudioEngine!
-    private(set) var player: AVAudioPlayerNode!
+    private var engine: AVAudioEngine?
+    private(set) var player: AVAudioPlayerNode?
 
     private var didSetUp = false
+
+    func updateVolume() {
+        player?.volume = UserDefaults.standard.float(forKey: "volume")
+    }
 
     // MARK: Helpers
 
@@ -31,9 +35,11 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
 
-            engine = AVAudioEngine()
+            let engine = AVAudioEngine()
+            self.engine = engine
 
-            player = AVAudioPlayerNode()
+            let player = AVAudioPlayerNode()
+            self.player = player
             engine.attach(player)
 
             let stereoFormat = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
@@ -49,15 +55,15 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
             preconditionFailure("RUINED")
         }
 
-        player.volume = 0.2
-        player.scheduleFile(audioFile, at: nil, completionHandler: nil)
-        player.play()
+        updateVolume()
+        player?.scheduleFile(audioFile, at: nil, completionHandler: nil)
+        player?.play()
     }
 
     // MARK: WKExtensionDelegate
 
     func applicationDidFinishLaunching() {
-        // No-op
+        UserDefaults.standard.register(defaults: ["volume" : Float(0.5)])
     }
 
     func applicationDidBecomeActive() {
