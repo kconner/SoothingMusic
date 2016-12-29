@@ -11,7 +11,7 @@ import Foundation
 final class Titles {
 
     static var random: String {
-        switch arc4random_uniform(8) {
+        switch arc4random_uniform(9) {
         case 0:
             return "Black gesso"
         case 1:
@@ -27,7 +27,9 @@ final class Titles {
         case 6:
             return "You don't want\ntoo much green"
         case 7:
-            return "Anybody can do it"
+            return "Anybody\ncan do it"
+        case 8:
+            return "Titanium hwite"
         default:
             return "RUINED"
         }

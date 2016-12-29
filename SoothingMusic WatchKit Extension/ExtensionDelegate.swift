@@ -24,6 +24,7 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func saveVolume() {
         UserDefaults.standard.set(volume, forKey: "volume")
+        UserDefaults.standard.synchronize()
     }
 
     // MARK: Helpers

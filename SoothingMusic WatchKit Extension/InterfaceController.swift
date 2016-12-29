@@ -54,10 +54,15 @@ final class InterfaceController: WKInterfaceController, WKCrownDelegate {
         super.awake(withContext: context)
 
         crownSequencer.delegate = self
-        crownSequencer.focus()
 
         volumeSlider.setValue(extensionDelegate.volume)
         buttonTitle = Titles.random
+    }
+
+    override func didAppear() {
+        super.didAppear()
+        
+        crownSequencer.focus()
     }
 
     // MARK: WKCrownDelegate

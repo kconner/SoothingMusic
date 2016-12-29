@@ -19,7 +19,7 @@
                                 <label width="1" height="1" heightAdjustment="-98" alignment="left" text="[Soothing Music]" textAlignment="center" id="vss-6u-YxM">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
-                                <slider alignment="left" continuous="YES" value="0.5" steps="8" id="lyL-0h-pfx">
+                                <slider alignment="left" continuous="YES" value="0.5" steps="4" id="lyL-0h-pfx">
                                     <connections>
                                         <action selector="volumeSliderValueChanged:" destination="AgC-eL-Hgc" id="LUo-FT-Zgd"/>
                                     </connections>
