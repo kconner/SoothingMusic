@@ -48,10 +48,4 @@ final class InterfaceController: WKInterfaceController {
         buttonTitle = Titles.random
     }
 
-    override func willActivate() {
-        super.willActivate()
-        
-        try! AVAudioSession.sharedInstance().setActive(true)
-    }
-
 }

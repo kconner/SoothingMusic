@@ -35,6 +35,16 @@ final class ComplicationController: NSObject, CLKComplicationDataSource {
         handler([])
     }
 
+    func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {
+        let calendar = Calendar.current
+        let lastHourComponents = calendar.dateComponents([.year, .month, .day, .hour], from: Date())
+        let lastHour = calendar.date(from: lastHourComponents)
+        var oneHour = DateComponents()
+        oneHour.hour = 1
+        let nextHour = calendar.date(byAdding: oneHour, to: lastHour ?? Date())
+        handler(nextHour)
+    }
+
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         var template: CLKComplicationTemplate?
 

@@ -14,9 +14,17 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
     private var engine: AVAudioEngine!
     private(set) var player: AVAudioPlayerNode!
 
-    // MARK: WKExtensionDelegate
+    private var didSetUp = false
 
-    func applicationDidFinishLaunching() {
+    // MARK: Helpers
+
+    private func setUpOnce() {
+        guard !didSetUp else {
+            return
+        }
+
+        didSetUp = true
+
         let audioFile: AVAudioFile
 
         do {
@@ -41,12 +49,20 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
             preconditionFailure("RUINED")
         }
 
-        player.volume = 0.05
+        player.volume = 0.2
         player.scheduleFile(audioFile, at: nil, completionHandler: nil)
         player.play()
     }
 
+    // MARK: WKExtensionDelegate
+
+    func applicationDidFinishLaunching() {
+        // No-op
+    }
+
     func applicationDidBecomeActive() {
+        setUpOnce()
+        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
