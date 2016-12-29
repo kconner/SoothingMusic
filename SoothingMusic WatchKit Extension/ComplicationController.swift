@@ -12,20 +12,10 @@ final class ComplicationController: NSObject, CLKComplicationDataSource {
 
     // MARK: Helpers
 
-    private var randomTitleLines: (first: String, second: String) {
-        let lines = Titles.random.components(separatedBy: "\n")
-        let first = 1 <= lines.count ? lines[0] : ""
-        let second = 2 <= lines.count ? lines[1] : ""
-        return (first: first, second: second)
-    }
-
     private var modularLargeTemplate: CLKComplicationTemplate {
-        let lines = randomTitleLines
-        
-        let template = CLKComplicationTemplateModularLargeStandardBody()
+        let template = CLKComplicationTemplateModularLargeTallBody()
         template.headerTextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "Joy of Painting")
-        template.body1TextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: lines.first)
-        template.body2TextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: lines.second)
+        template.bodyTextProvider = CLKTextProvider.localizableTextProvider(withStringsFileTextKey: "RUINED")
         return template
     }
 

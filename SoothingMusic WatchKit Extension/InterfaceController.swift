@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 import AVFoundation
 
-final class InterfaceController: WKInterfaceController {
+final class InterfaceController: WKInterfaceController, WKCrownDelegate {
 
     @IBOutlet private var volumeSlider: WKInterfaceSlider!
     @IBOutlet private var pauseButton: WKInterfaceButton!
@@ -28,18 +28,16 @@ final class InterfaceController: WKInterfaceController {
     // MARK: Helpers
 
     @IBAction func volumeSliderValueChanged(_ value: Float) {
-        UserDefaults.standard.set(value, forKey: "volume")
-        extensionDelegate.updateVolume()
+        extensionDelegate.volume = value
+        extensionDelegate.saveVolume()
     }
     
     @IBAction private func didTapPauseButton() {
         if let player = extensionDelegate.player {
             if player.isPlaying {
                 player.pause()
-                volumeSlider.setEnabled(false)
             } else {
                 player.play()
-                volumeSlider.setEnabled(true)
             }
         }
 
@@ -55,8 +53,23 @@ final class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
-        volumeSlider.setValue(UserDefaults.standard.float(forKey: "volume"))
+        crownSequencer.delegate = self
+        crownSequencer.focus()
+
+        volumeSlider.setValue(extensionDelegate.volume)
         buttonTitle = Titles.random
+    }
+
+    // MARK: WKCrownDelegate
+
+    func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
+        let volume = max(0.0, min(1.0, extensionDelegate.volume + Float(rotationalDelta)))
+        volumeSlider.setValue(volume)
+        extensionDelegate.volume = volume
+    }
+
+    func crownDidBecomeIdle(_ crownSequencer: WKCrownSequencer?) {
+        extensionDelegate.saveVolume()
     }
 
 }

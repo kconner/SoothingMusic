@@ -16,8 +16,14 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     private var didSetUp = false
 
-    func updateVolume() {
-        player?.volume = UserDefaults.standard.float(forKey: "volume")
+    var volume: Float = 0.5 {
+        didSet {
+            player?.volume = volume
+        }
+    }
+
+    func saveVolume() {
+        UserDefaults.standard.set(volume, forKey: "volume")
     }
 
     // MARK: Helpers
@@ -55,7 +61,7 @@ final class ExtensionDelegate: NSObject, WKExtensionDelegate {
             preconditionFailure("RUINED")
         }
 
-        updateVolume()
+        volume = UserDefaults.standard.float(forKey: "volume")
         player?.scheduleFile(audioFile, at: nil, completionHandler: nil)
         player?.play()
     }
